@@ -51,11 +51,11 @@
                 </li>
             </ul>
 
-            @auth
+            @if(!auth()->guest() && auth()->user()->userDetail->profpic_path)
                 <img src={{ asset("storage/" . auth()->user()->userDetail->profpic_path) }} alt="profpic" width="65px" height="65px" class="rounded-circle">
             @else
                 <img src={{ asset("res/image/blankprofilepictureround.png") }} alt="profpic" width="70px" height="70px">
-            @endauth
+            @endif
 
         </div>
     </div>
