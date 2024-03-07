@@ -47,6 +47,11 @@
                                 <h5 class="fw-bold"><a href="/productdetails/{{ $product->slug }}" class="text-decoration-none text-dark">{{ $product->product_name }}</a></h5>
                                 <p class="fst-italic text-secondary fs-6">by {{ $product->seller->userDetail->username }}</p>
                                 <p class="card-text fw-semibold"><i class="bi bi-star-fill text-warning"></i> Not yet rated</p>
+
+                                <form>
+                                    <input type="hidden" id="item-price" value="{{ $product->price }}">
+                                </form>
+
                                 <p class="fw-bold fs-4">Rp {{ number_format($product->price) }}.00</p>
                             </div>
                             <div class="d-flex ms-auto me-5">
@@ -68,23 +73,18 @@
 
         </div>
 
-        <div class="bg-white fixed-bottom rounded-top p-3 border row">
+        <div class="bg-white fixed-bottom p-3 border row z-0">
             <div class="col d-flex flex-row justify-content-center">
                 <div class="d-flex flex-column">
                     <span class="fw-bold">Subtotal:</span>
-                    <?php
-                        $subtotal = 0;
-                        foreach(auth()->user()->cart as $product){
-                            $subtotal += $product->price;
-                        }
-                        echo "<span>Rp " . number_format($subtotal) . ".00</span>";
-                    ?>
+                    <span id="subtotal">Rp 0.00</span>
                 </div>
             </div>
-            <div class="col d-flex align-items-center justify-content-center">
+            <div class="col d-flex align-items-center justify-content-end me-5">
                 <a href="#" class="btn btn-success w-50"><i class="bi bi-bag-check-fill"></i> Checkout</a>
             </div>
 
+            <script type="text/javascript" src={{ asset("res/code/js/cart.js") }}></script>
 
         </div>
 
@@ -94,26 +94,5 @@
             <h6 class="fst-italic text-center my-5">Your cart is empty. Let's buy some product and add them to your cart!</h6>
         </div>
     @endif
-
-    <script type="text/javascript">
-        function addItem(looperId){
-            const itemNum = document.getElementById("itemNum_" + looperId.toString());
-            const oldNum = parseInt(itemNum.value);
-            const newNum = oldNum + 1;
-
-            itemNum.value = newNum.toString();
-        };
-
-        function subtractItem(looperId){
-            const itemNum = document.getElementById("itemNum_" + looperId.toString());
-            const oldNum = parseInt(itemNum.value);
-
-            if(oldNum > 1){
-                const newNum = oldNum - 1;
-                itemNum.value = newNum.toString();
-            }
-        };
-
-    </script>
 
 @endsection
