@@ -46,13 +46,13 @@
                             <div class="d-flex flex-column d-inline-block">
                                 <h5 class="fw-bold"><a href="/productdetails/{{ $product->slug }}" class="text-decoration-none text-dark">{{ $product->product_name }}</a></h5>
                                 <p class="fst-italic text-secondary fs-6">by {{ $product->seller->userDetail->username }}</p>
-                                <p class="card-text fw-semibold"><i class="bi bi-star-fill text-warning"></i> Not yet rated</p>
+                                <span class="card-text fw-semibold"><i class="bi bi-star-fill text-warning"></i> Not yet rated</span>
 
                                 <form>
                                     <input type="hidden" id="item-price" value="{{ $product->price }}">
                                 </form>
 
-                                <p class="fw-bold fs-4">Rp {{ number_format($product->price) }}.00</p>
+                                <span class="fw-bold fs-4">Rp {{ number_format($product->price) }}.00</span>
                             </div>
                             <div class="d-flex ms-auto me-5">
                                 <button type="submit" id="minusButton_{{ $loop->iteration }}" class="btn btn-primary rounded-0 rounded-start" onClick="subtractItem({{ $loop->iteration }});"><i class="bi bi-dash-lg"></i></button>
