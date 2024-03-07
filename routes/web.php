@@ -19,6 +19,10 @@ Route::get("/", function(){
     return redirect("/products");
 });
 
+Route::get("/about", function(){
+    return view("mainpage.about");
+});
+
 Route::get("/products", function(){
     return view("mainpage.allproducts", [
         "products" => Product::filter(request(["search", "category"]))->get()

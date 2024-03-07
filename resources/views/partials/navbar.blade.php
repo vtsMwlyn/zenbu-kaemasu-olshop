@@ -17,7 +17,7 @@
                     <a class="nav-link {{ Request::is("categories*")? "text-zktheme-selected fw-bold" : "text-light" }}" href="/categories">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is("about*")? "text-zktheme-selected fw-bold" : "text-light" }}" href="/products">About</a>
+                    <a class="nav-link {{ Request::is("about*")? "text-zktheme-selected fw-bold" : "text-light" }}" href="/about">About</a>
                 </li>
             </ul>
 
