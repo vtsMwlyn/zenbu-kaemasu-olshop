@@ -31,7 +31,7 @@
     <h3 class="text-zktheme-title text-center mb-4">My Cart</h3>
 
     @if(auth()->user()->cart->count())
-        <div class="mt-3 row">
+        <div class="mt-3 row" style="padding-bottom: 90px;">
             @foreach(auth()->user()->cart as $product)
                 <div class="card mb-3 ps-0">
                     <div class="row">
@@ -65,6 +65,26 @@
                 </div>
 
             @endforeach
+
+        </div>
+
+        <div class="bg-white fixed-bottom rounded-top p-3 border row">
+            <div class="col d-flex flex-row justify-content-center">
+                <div class="d-flex flex-column">
+                    <span class="fw-bold">Subtotal:</span>
+                    <?php
+                        $subtotal = 0;
+                        foreach(auth()->user()->cart as $product){
+                            $subtotal += $product->price;
+                        }
+                        echo "<span>Rp " . number_format($subtotal) . ".00</span>";
+                    ?>
+                </div>
+            </div>
+            <div class="col d-flex align-items-center justify-content-center">
+                <a href="#" class="btn btn-success w-50"><i class="bi bi-bag-check-fill"></i> Checkout</a>
+            </div>
+
 
         </div>
 
