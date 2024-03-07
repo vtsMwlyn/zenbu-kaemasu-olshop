@@ -51,7 +51,12 @@
                 </li>
             </ul>
 
-            <img src={{ asset("storage/" . auth()->user()->userDetail->profpic_path) }} alt="profpic" width="60px" class="rounded-circle">
+            @auth
+                <img src={{ asset("storage/" . auth()->user()->userDetail->profpic_path) }} alt="profpic" width="60px" class="rounded-circle">
+            @else
+                <img src={{ asset("res/image/blankprofilepictureround.png") }} alt="profpic" width="60px">
+            @endauth
+
         </div>
     </div>
 </nav>

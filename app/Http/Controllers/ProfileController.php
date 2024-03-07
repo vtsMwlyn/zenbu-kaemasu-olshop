@@ -12,27 +12,31 @@ class ProfileController extends Controller {
         ]);
     }
 
-    public function create(){
-        //
+    public function update(){
+
     }
 
-    public function store(Request $request){
-        //
-    }
+    // public function create(){
+    //     //
+    // }
 
-    public function show(UserDetail $userDetail){
-        //
-    }
+    // public function store(Request $request){
+    //     //
+    // }
 
-    public function edit(UserDetail $userDetail){
-        //
-    }
+    // public function show(UserDetail $userDetail){
+    //     //
+    // }
 
-    public function update(Request $request, UserDetail $userDetail){
-        //
-    }
+    // public function edit(UserDetail $userDetail){
+    //     //
+    // }
 
-    public function destroy(UserDetail $userDetail){
-        //
-    }
+    // public function update(Request $request, UserDetail $userDetail){
+    //     //
+    // }
+
+    // public function destroy(UserDetail $userDetail){
+    //     //
+    // }
 }

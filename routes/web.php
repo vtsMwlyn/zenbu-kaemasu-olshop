@@ -63,4 +63,7 @@ Route::get("/productdetails/{product:slug}", function(Product $product){
 
 Route::resource("/manage-products", ProductController::class);
 
-Route::resource("/profile", ProfileController::class);
+Route::get("/profile", [ProfileController::class, "index"]);
+Route::post("/profile", [ProfileController::class, "update"]);
+
+// Route::resource("/profile", ProfileController::class);
