@@ -21,7 +21,8 @@ class WishlistController extends Controller
             return redirect("/wishlist")->with("failAddWishlistSelf", "You can't add your own product in your wishlist");
         }
 
-        $existing = Wishlist::where("product_id", $product->id)->exists() && Wishlist::where("buyer_id", auth()->user()->id)->exists();
+        $existing = Wishlist::where("buyer_id", auth()->user()->id)->where("product_id", $product->id)->exists();
+
         if($existing){
             return redirect("/wishlist")->with("failAddWishlistExist", "This item has been already in your wishlist");
         }
@@ -37,6 +38,11 @@ class WishlistController extends Controller
 
         Wishlist::destroy("id", $wishlist->id);
 
-        return redirect("/wishlist")->with("successRemoveWishlist", "\"" . $product->product_name . "\"" . " has been removed from your wishlist");
+        if(Wishlist::where("id", $wishlist->id)->exists()){
+            return redirect("/wishlist")->with("unsuccessRemoveWishlist", "\"" . "Error occured, please try again.");
+        }
+        else {
+            return redirect("/wishlist")->with("successRemoveWishlist", "\"" . $product->product_name . "\"" . " has been removed from your wishlist");
+        }
     }
 }

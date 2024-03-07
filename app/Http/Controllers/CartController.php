@@ -21,7 +21,8 @@ class CartController extends Controller
             return redirect("/cart")->with("failAddCartSelf", "You can't add your own product in your cart");
         }
 
-        $existing = Cart::where("product_id", $product->id)->exists() && Cart::where("buyer_id", auth()->user()->id)->exists();
+        $existing = Cart::where("buyer_id", auth()->user()->id)->where("product_id", $product->id)->exists();
+
         if($existing){
             return redirect("/cart")->with("failAddCartExist", "This item has been already in your cart");
         }
@@ -37,6 +38,12 @@ class CartController extends Controller
 
         Cart::destroy("id", $cart->id);
 
-        return redirect("/cart")->with("successRemoveCart", "\"" . $product->product_name . "\"" . " has been removed from your cart");
+        if(Cart::where("id", $cart->id)->exists()){
+            return redirect("/cart")->with("unsuccessRemoveCart", "\"" . "Error occured, please try again.");
+        }
+        else {
+            return redirect("/cart")->with("successRemoveCart", "\"" . $product->product_name . "\"" . " has been removed from your cart");
+        }
+
     }
 }

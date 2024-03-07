@@ -3,24 +3,29 @@
 @section("content")
     @if(session()->has("successAddCart"))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session("successAddCart") }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+            {{ session("successAddCart") }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @elseif(session()->has("successRemoveCart"))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{ session("successRemoveCart") }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+            {{ session("successRemoveCart") }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif(session()->has("unsuccessRemoveCart"))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session("unsuccessRemoveCart") }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @elseif(session()->has("failAddCartSelf"))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ session("failAddCartSelf") }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+            {{ session("failAddCartSelf") }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @elseif(session()->has("failAddCartExist"))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ session("failAddCartExist") }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+            {{ session("failAddCartExist") }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
 
     <h3 class="text-zktheme-title text-center mb-4">My Cart</h3>
@@ -41,6 +46,7 @@
                             <div class="d-flex flex-column d-inline-block">
                                 <h5 class="fw-bold"><a href="/productdetails/{{ $product->slug }}" class="text-decoration-none text-dark">{{ $product->product_name }}</a></h5>
                                 <p class="fst-italic text-secondary fs-6">by {{ $product->seller->userDetail->username }}</p>
+                                <p class="card-text fw-semibold"><i class="bi bi-star-fill text-warning"></i> Not yet rated</p>
                                 <p class="fw-bold fs-4">Rp {{ number_format($product->price) }}.00</p>
                             </div>
                             <div class="d-flex ms-auto me-5">
