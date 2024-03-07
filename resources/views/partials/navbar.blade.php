@@ -35,7 +35,7 @@
                             Welcome back, {{ auth()->user()->userDetail->real_name }}!
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
@@ -51,7 +51,7 @@
                 </li>
             </ul>
 
-            <img src={{ asset("res/image/blankprofilepictureround.png") }} alt="rounded profpic" width="70px">
+            <img src={{ asset("storage/" . auth()->user()->userDetail->profpic_path) }} alt="profpic" width="60px" class="rounded-circle">
         </div>
     </div>
 </nav>

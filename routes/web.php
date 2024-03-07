@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\WishlistController;
@@ -61,3 +62,5 @@ Route::get("/productdetails/{product:slug}", function(Product $product){
 });
 
 Route::resource("/manage-products", ProductController::class);
+
+Route::resource("/profile", ProfileController::class);
