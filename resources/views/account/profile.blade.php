@@ -3,15 +3,13 @@
 @section("content")
     <div class="bg-light rounded py-3 px-5 mx-5 mt-3 mb-5">
         <h4 class="text-zktheme-title text-center mt-1 mb-3">My Profile</h4>
-        <form action="/manage-products/{{ $userDetail->slug }}" method="post" enctype="multipart/form-data">
+        <form action="/profile" method="post" enctype="multipart/form-data">
             @csrf
-            @method("put")
-
             <div class="row mb-3">
                 <div class="col">
-                    <label for="realname" class="form-label text-zktheme-label">Real Name</label>
-                    <input type="realname" name="realname" class="form-control @error("realname") is-invalid @enderror" id="realname" value="{{ old("realname", $userDetail->real_name) }}">
-                    @error("realname")
+                    <label for="real_name" class="form-label text-zktheme-label">Real Name</label>
+                    <input type="real_name" name="real_name" class="form-control @error("real_name") is-invalid @enderror" id="real_name" value="{{ old("real_name", $userDetail->real_name) }}">
+                    @error("real_name")
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -31,12 +29,7 @@
             <div class="row mb-3">
                 <div class="col">
                     <label for="email" class="form-label text-zktheme-label">Email Address</label>
-                    <input type="email" name="email" class="form-control @error("email") is-invalid @enderror" id="email" value="{{ old("email", auth()->user()->email) }}">
-                    @error("email")
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                    <input type="email" name="email" class="form-control" id="email" value="{{ old("email", auth()->user()->email) }}" disabled>
                 </div>
                 <div class="col">
                     <label for="phone" class="form-label text-zktheme-label fs-6">Phone Number</label>
@@ -63,16 +56,16 @@
 
             <div class="row mb-3">
                 <div>
-                    <label for="image" class="form-label">Profile Picture</label>
-                    <div class="@error("category") border rounded border-danger @enderror">
+                    <label for="profpic_path" class="form-label">Profile Picture</label>
+                    <div class="@error("profpic_path") border rounded border-danger @enderror">
                         @if($userDetail->profpic_path)
                             <img src={{ asset("storage/" . $userDetail->profpic_path) }} class="img-preview img-fluid d-block col-sm-5 mb-3">
                         @else
                             <img class="img-preview img-fluid d-block col-sm-5">
                         @endif
-                        <input class="form-control" type="file" id="image" name="image" onChange="previewImage()">
+                        <input class="form-control" type="file" id="profpic_path" name="profpic_path" onChange="previewImage()">
                     </div>
-                    @error("image")
+                    @error("profpic_path")
                         <small class="text-danger">
                             {{ $message }}
                         </small>
@@ -80,7 +73,7 @@
                 </div>
             </div>
 
-            <input type="hidden" name="slug" id="slug" value="slug">
+            {{-- <input type="hidden" name="slug" id="slug" value="slug"> --}}
             <input type="hidden" name="oldImage" id="oldImage" value="{{ $userDetail->profpic_path }}">
 
             <div class="d-flex justify-content-end">
@@ -100,7 +93,7 @@
         });
 
         function previewImage(){
-            const image = document.querySelector("#image");
+            const image = document.querySelector("#profpic_path");
             const imgPrev = document.querySelector(".img-preview")
 
             const oFReader = new FileReader();

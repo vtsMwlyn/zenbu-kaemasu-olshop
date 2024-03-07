@@ -21,7 +21,7 @@ class RegisterController extends Controller
             "password" => "required",
             "dob" => "required|date",
             "address" => "required",
-            "phone" => "required|min:11",
+            "phone" => "required|min:11|max:14",
             "username" => "required"
         ]);
         $validatedData["password"] = bcrypt($request["password"]);

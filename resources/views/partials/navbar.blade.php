@@ -52,9 +52,9 @@
             </ul>
 
             @auth
-                <img src={{ asset("storage/" . auth()->user()->userDetail->profpic_path) }} alt="profpic" width="60px" class="rounded-circle">
+                <img src={{ asset("storage/" . auth()->user()->userDetail->profpic_path) }} alt="profpic" width="65px" height="65px" class="rounded-circle">
             @else
-                <img src={{ asset("res/image/blankprofilepictureround.png") }} alt="profpic" width="60px">
+                <img src={{ asset("res/image/blankprofilepictureround.png") }} alt="profpic" width="70px" height="70px">
             @endauth
 
         </div>
