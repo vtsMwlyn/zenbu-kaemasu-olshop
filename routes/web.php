@@ -17,53 +17,51 @@ use App\Http\Controllers\WishlistController;
 use Illuminate\Database\Eloquent\Collection;
 
 Route::get("/", function(){
-    return redirect("/products");
-});
+    return redirect(route("products"));
+})->name("home");
 
 Route::get("/about", function(){
     return view("mainpage.about");
-});
+})->name("about");
 
 Route::get("/products", function(){
     return view("mainpage.allproducts", [
         "products" => Product::filter(request(["search", "category"]))->get()
     ]);
-});
+})->name("products");
 
 Route::get("/categories", function(){
     return view("mainpage.allcategories", [
         "categories" => Category::all(),
         "products" => Product::all()
     ]);
-});
+})->name("categories");
 
 Route::get("/categories/{category:slug}", function(Category $category){
     return view("mainpage.productsbycategory", [
         "category" => $category,
         "title" => $category->category_name . " Products"
     ]);
-});
+})->name("productbycategory");
 
 Route::get("/login", [LoginController::class, "index"])->name("login")->middleware("guest");
-Route::post("/login", [LoginController::class, "authenticate"]);
-Route::post("/logout", [LoginController::class, "logout"]);
+Route::post("/login", [LoginController::class, "authenticate"])->name("login.store");
+Route::post("/logout", [LoginController::class, "logout"])->name("logout");
 
-Route::get("/register", [RegisterController::class, "index"])->middleware("guest");
-Route::post("/register", [RegisterController::class, "store"]);
+Route::get("/register", [RegisterController::class, "index"])->middleware("guest")->name("register");
+Route::post("/register", [RegisterController::class, "store"])->name("register.store");
 
-Route::resource("/cart", CartController::class)->middleware("auth");
-Route::resource("/wishlist", WishlistController::class)->middleware("auth");
+Route::resource("/cart", CartController::class, ["names" => ["index" => "cart.index", "store" => "cart.store", "destroy" => "cart.destroy"]])->middleware("auth");
+Route::resource("/wishlist", WishlistController::class, ["names" => ["index" => "wishlist.index", "store" => "wishlist.store", "destroy" => "wishlist.destroy"]])->middleware("auth");
 
 Route::get("/productdetails/{product:slug}", function(Product $product){
     return view("mainpage.productdetails", [
         "product" => $product,
         "otherproducts" => Product::where("seller_id", $product->seller->id)->get()
     ]);
-});
+})->name("productdetails");
 
-Route::resource("/manage-products", ProductController::class);
+Route::resource("/manage-products", ProductController::class, ["names" => ["index" => "manageproduct.index", "store" => "manageproduct.store", "create" => "manageproduct.create", "edit" => "manageproduct.edit", "update" => "manageproduct.update", "destroy" => "manageproduct.destroy"]]);
 
-Route::get("/profile", [ProfileController::class, "index"]);
-Route::post("/profile", [ProfileController::class, "update"]);
-
-// Route::resource("/profile", ProfileController::class);
+Route::get("/profile", [ProfileController::class, "index"])->name("profile");
+Route::post("/profile", [ProfileController::class, "update"])->name("profile.update");

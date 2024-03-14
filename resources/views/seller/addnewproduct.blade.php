@@ -4,7 +4,7 @@
     <div class="bg-light rounded py-3 px-5 mx-5 mt-3 mb-5">
         <h4 class="text-zktheme-title text-center mt-1 mb-3">Add New Product</h4>
 
-        <form action="/manage-products" method="post" enctype="multipart/form-data">
+        <form action={{ route("manageproduct.store") }} method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="mb-3">

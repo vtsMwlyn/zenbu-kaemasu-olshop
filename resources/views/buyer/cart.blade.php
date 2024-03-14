@@ -44,7 +44,7 @@
                         </div>
                         <div class="col d-flex align-items-center">
                             <div class="d-flex flex-column d-inline-block">
-                                <h5 class="fw-bold"><a href="/productdetails/{{ $product->slug }}" class="text-decoration-none text-dark">{{ $product->product_name }}</a></h5>
+                                <h5 class="fw-bold"><a href={{ route("productdetails", $product->slug) }} class="text-decoration-none text-dark">{{ $product->product_name }}</a></h5>
                                 <p class="fst-italic text-secondary fs-6">by {{ $product->seller->userDetail->username }}</p>
                                 <span class="card-text fw-semibold"><i class="bi bi-star-fill text-warning"></i> Not yet rated</span>
 
@@ -60,7 +60,7 @@
                                 <button type="submit" id="addButton_{{ $loop->iteration }}" class="btn btn-primary rounded-0 rounded-end" onClick="addItem({{ $loop->iteration }});"><i class="bi bi-plus-lg"></i></button>
 
                             </div>
-                            <form action="/cart/{{ $product->slug }}" method="post">
+                            <form action={{ route("cart.destroy", $product->slug) }} method="post">
                                 @csrf
                                 @method("delete")
                                 <button type="submit" class="btn btn-danger me-5 remove-item-btn"><i class="bi bi-trash3-fill"></i> Remove</button>

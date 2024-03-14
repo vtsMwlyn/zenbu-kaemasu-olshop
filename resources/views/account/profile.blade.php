@@ -3,7 +3,13 @@
 @section("content")
     <div class="bg-light rounded py-3 px-5 mx-5 mt-3 mb-5">
         <h4 class="text-zktheme-title text-center mt-1 mb-3">My Profile</h4>
-        <form action="/profile" method="post" enctype="multipart/form-data">
+        @if(session()->has("successUpdateProfile"))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session("successUpdateProfile") }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        <form action={{ route("profile.update") }} method="post" enctype="multipart/form-data">
             @csrf
             <div class="row mb-3">
                 <div class="col">
@@ -73,7 +79,7 @@
                 </div>
             </div>
 
-            {{-- <input type="hidden" name="slug" id="slug" value="slug"> --}}
+            <input type="hidden" name="username" id="username" value="{{ $userDetail->username }}">
             <input type="hidden" name="oldImage" id="oldImage" value="{{ $userDetail->profpic_path }}">
 
             <div class="d-flex justify-content-end">
@@ -84,12 +90,12 @@
     </div>
 
     <script type="text/javascript">
-        const inpProductName = document.getElementById("productname");
-        const inpSlug = document.getElementById("slug");
+        const inpRealName = document.getElementById("real_name");
+        const inpUsername = document.getElementById("username");
 
-        inpProductName.addEventListener("change", function(){
-            inpSlug.value = inpProductName.value.replaceAll(" ", "-").toLowerCase();
-            console.log(inpSlug.value);
+        inpRealName.addEventListener("change", function(){
+            inpUsername.value = inpRealName.value.replaceAll(" ", "-").toLowerCase();
+            console.log(inpUsername.value);
         });
 
         function previewImage(){

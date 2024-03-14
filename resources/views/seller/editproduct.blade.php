@@ -3,7 +3,7 @@
 @section("content")
     <div class="bg-light rounded py-3 px-5 mx-5 mt-3 mb-5">
         <h4 class="text-zktheme-title text-center mt-1 mb-3">Edit Product</h4>
-        <form action="/manage-products/{{ $product->slug }}" method="post" enctype="multipart/form-data">
+        <form action={{ route("manageproduct.update", $product->slug) }} method="post" enctype="multipart/form-data">
             @csrf
             @method("put")
             <div class="row">
@@ -103,7 +103,7 @@
                 </div>
             </div>
 
-            <input type="hidden" name="slug" id="slug" value="slug">
+            <input type="hidden" name="slug" id="slug" value="{{ $product->slug }}">
             <input type="hidden" name="oldImage" id="oldImage" value="{{ $product->prodimg_path }}">
 
             <div class="d-flex justify-content-end">

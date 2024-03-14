@@ -50,6 +50,6 @@ class RegisterController extends Controller
 
         UserDetail::create($userDetailData);
 
-        return redirect("/login")->with("successCreateAccount", "Your new account has been created!");
+        return redirect(route("login"))->with("successCreateAccount", "Your new account has been created!");
     }
 }

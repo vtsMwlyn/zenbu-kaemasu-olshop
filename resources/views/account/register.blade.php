@@ -8,7 +8,7 @@
             <div class="bg-light rounded py-3 px-4" style="width: 60vw;">
                 <h4 class="text-zktheme-title text-center mt-1 mb-3">Create New Account</h4>
 
-                <form action="/register" method="post">
+                <form action={{ route("register.store") }} method="post">
                     @csrf
                     <div class="row">
                         <div class="col">
@@ -76,7 +76,7 @@
                     <button type="submit" class="btn btn-primary w-100 my-4">Sign Up</button>
                 </form>
 
-                <p class="text-center"><a href="/login" class="text-decoration-none">Already have an account? Sign in here!</a></p>
+                <p class="text-center"><a href={{ route("login") }} class="text-decoration-none">Already have an account? Sign in here!</a></p>
 
             </div>
         </div>

@@ -37,9 +37,9 @@
                         </div>
                         <div class="mx-0 mt-2">
                             <div class="d-flex flex-wrap column-gap-1">
-                                <a href="/productdetails/{{ $product->slug }}" class="btn btn-success text-light"><i class="bi bi-eye"></i></a>
-                                <a href="/manage-products/{{ $product->slug }}/edit" class="btn btn-warning text-light"><i class="bi bi-pencil"></i></a>
-                                <form method="post" action="/manage-products/{{ $product->slug }}" class="d-inline">
+                                <a href={{ route("productdetails", $product->slug) }} class="btn btn-success text-light"><i class="bi bi-eye"></i></a>
+                                <a href={{ route("manageproduct.edit", $product->slug) }} class="btn btn-warning text-light"><i class="bi bi-pencil"></i></a>
+                                <form method="post" action={{ route("manageproduct.destroy", $product->slug) }} class="d-inline">
                                     @method("delete")
                                     @csrf
                                     <button class="btn btn-danger" onclick="return confirm('This product will be deleted. Are you sure?')"><i class="bi bi-trash"></i></button>

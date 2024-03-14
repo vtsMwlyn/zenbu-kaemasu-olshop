@@ -19,7 +19,7 @@
                 </div>
             @endif
 
-            <form action="/login" method="post">
+            <form action={{ route("login.store") }} method="post">
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label text-zktheme-label">Email</label>
@@ -42,7 +42,7 @@
                 <button type="submit" class="btn btn-primary w-100 my-4">Sign In</button>
             </form>
 
-            <p class="text-center"><a href="/register" class="text-decoration-none">Don't have an account? Register here!</a></p>
+            <p class="text-center"><a href={{ route("register") }} class="text-decoration-none">Don't have an account? Register here!</a></p>
 
         </div>
     </div>

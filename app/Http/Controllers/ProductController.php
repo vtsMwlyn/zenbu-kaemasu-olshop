@@ -65,7 +65,7 @@ class ProductController extends Controller{
 
         ProductCategory::create($newProductCategoryData);
 
-        return redirect("/manage-products")->with("successAddProduct", "Successfully added a new product!");
+        return redirect(route("manageproduct.index"))->with("successAddProduct", "Successfully added a new product!");
     }
 
     public function show(Product $product){
@@ -87,8 +87,8 @@ class ProductController extends Controller{
             "price" => "required|numeric|gt:0",
             "stock" => "required|numeric|gt:0",
             "image" => "file|image|max:4096",
-            "slug" => "required",
             "description" => "required",
+            "slug" => "required",
             "category" => "required"
         ]);
 
@@ -104,7 +104,7 @@ class ProductController extends Controller{
 
         $validatedUpdateData["seller_id"] = auth()->user()->id;
 
-        if(Product::where("slug", $validatedUpdateData["slug"])->exists() || $product->slug == $validatedUpdateData["slug"]){
+        if(Product::where("slug", $validatedUpdateData["slug"])->exists() && $validatedUpdateData["productname"] != $product->product_name){
             $validatedUpdateData["slug"] = $validatedUpdateData["slug"] . "-" . round(microtime(true) * 1000);
         }
 
@@ -127,7 +127,7 @@ class ProductController extends Controller{
         ];
         ProductCategory::where("id", $pctg->id)->update($newProductCategoryData);
 
-        return redirect("/manage-products")->with("successUpdateProduct", "Product successfully updated!");
+        return redirect(route("manageproduct.index"))->with("successUpdateProduct", "Product successfully updated!");
     }
 
     public function destroy($slug){
@@ -141,6 +141,6 @@ class ProductController extends Controller{
         ProductCategory::destroy($pctg->id);
         Product::destroy($product->id);
 
-        return redirect("/manage-products")->with("successDeleteProduct", "The product has been removed from your shop.");
+        return redirect(route("manageproduct.index"))->with("successDeleteProduct", "The product has been removed from your shop.");
     }
 }
