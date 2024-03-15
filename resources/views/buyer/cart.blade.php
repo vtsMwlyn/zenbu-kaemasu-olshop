@@ -31,9 +31,9 @@
     <h3 class="text-zktheme-title text-center mb-4">My Cart</h3>
 
     @if(auth()->user()->cart->count())
-        <div class="mt-3 row pb-3">
+        <div class="my-4 row pb-3">
             @foreach(auth()->user()->cart as $product)
-                <div class="card mb-3 p-0">
+                <div class="card mb-4 p-0">
                     <div class="d-flex flex-wrap">
                         <!--Card image-->
                         <div class="col-lg-3">

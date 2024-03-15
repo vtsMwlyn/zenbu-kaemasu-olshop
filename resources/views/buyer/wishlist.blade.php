@@ -31,9 +31,9 @@
     <h3 class="text-zktheme-title text-center mb-4">My Wishlist</h3>
 
     @if(auth()->user()->wishlist->count())
-        <div class="mt-3 row">
+        <div class="my-3 row">
             @foreach(auth()->user()->wishlist as $product)
-                <div class="col-md-3 mb-5">
+                <div class="col-md-3 mb-4">
                     <div class="card">
                         <form action={{ route("wishlist.destroy", $product->slug) }} method="post">
                             @csrf
