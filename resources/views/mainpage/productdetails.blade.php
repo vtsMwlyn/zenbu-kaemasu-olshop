@@ -23,7 +23,7 @@
 
                             <div class="col-md-10 px-3 d-flex align-items-center">
                                 <div class="d-flex flex-column">
-                                    <h5 class="fw-semibold"><a href={{ route("productdetails", $product->slug) }} class="text-decoration-none text-dark">{{ $p->product_name }}</a></h5>
+                                    <h5 class="fw-semibold"><a href={{ route("productdetails", $p->slug) }} class="text-decoration-none text-dark">{{ $p->product_name }}</a></h5>
                                     <span class="fw-bold fs-6"><i class="bi bi-cash-stack text-success"></i> Rp {{ number_format($p->price) }}.00</span>
                                 </div>
 
@@ -35,7 +35,7 @@
         </div>
 
         <div class="col-4 p-0">
-            <div class="bg-white h-auto pb-2 sticky-top">
+            <div class="bg-white h-auto pb-2 sticky-bottom">
                 <form action={{ route("wishlist.store") }} method="post">
                     @csrf
                     <input type="hidden" name="prodslug" id="prodslug" value="{{ $product->slug }}">
@@ -43,9 +43,9 @@
                 </form>
 
                 @if($product->prodimg_path)
-                    <img src={{ asset("storage/" . $product->prodimg_path) }} class="w-100" alt="Default product image">
+                    <img src={{ asset("storage/" . $product->prodimg_path) }} class="w-100" alt="Default product image" height="250px">
                 @else
-                    <img src={{ asset("res/image/defaultproductimage.jpg") }} class="w-100" alt="Default product image">
+                    <img src={{ asset("res/image/defaultproductimage.jpg") }} class="w-100" alt="Default product image" height="250px">
                 @endif
 
                 <div class="my-3 px-3">

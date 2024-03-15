@@ -8,7 +8,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
-        <link href={{ asset("res/code/css/style.css") }} rel="stylesheet">
+
+        <link rel="stylesheet" href={{ asset("res/code/css/style.css") }}>
 
         <title>Zenbu Kaemasu Online Shop</title>
 
@@ -20,16 +21,14 @@
 
     </head>
 
-    <body class="bg-zktheme-light-blue" style="height: 100vh;">
+    <body class="bg-zktheme-light-blue">
         @include("partials.navbar")
 
-        <div class="row position-relative z-0">
-            @include("partials.sidebar")
-
-            <div class="col main-content-container">
+        <div class="d-flex" style="padding-top: 110px">
+            <div class="col-sm-2 bg-zktheme-dark-blue collapse" id="sidebar"></div>
+            <div class="col px-5">
                 @yield("content")
             </div>
-
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

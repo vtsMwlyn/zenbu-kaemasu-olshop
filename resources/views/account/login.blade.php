@@ -1,10 +1,10 @@
 @extends("layouts.main2")
 
 @section("container")
-    <div class="position-absolute top-50 start-50 translate-middle justify-content-center">
-        <img src={{ asset("res/image/logowithtext.png") }} alt="Logo Zenbu Kaemasu Olshop" width="200px" class="mb-3 position-relative top-0 start-50 translate-middle-x">
+    <div class="container d-flex flex-column align-items-center">
+        <img src={{ asset("res/image/logowithtext.png") }} alt="Logo Zenbu Kaemasu Olshop" width="200px" class="mb-3">
 
-        <div class="bg-light rounded py-3 px-4" style="width: 40vw;">
+        <div class="bg-light rounded py-3 px-4 col-sm-6">
             <h4 class="text-zktheme-title text-center mt-1 mb-3">Please login to continue</h4>
 
             @if(session()->has("loginError"))

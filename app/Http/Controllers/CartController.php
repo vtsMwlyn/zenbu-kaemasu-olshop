@@ -33,8 +33,8 @@ class CartController extends Controller
     }
 
     public function destroy($prodslug){
-        $product = Product::where("slug", $prodslug)->get()[0];
-        $cart = Cart::where("product_id", $product->id)->get()[0];
+        $product = Product::where("slug", $prodslug)->first();
+        $cart = Cart::where("product_id", $product->id)->where("buyer_id", auth()->user()->id)->first();
 
         Cart::destroy("id", $cart->id);
 

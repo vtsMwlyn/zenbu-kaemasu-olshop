@@ -1,8 +1,10 @@
-<div class="col-2 align-items-start h-100 fixed-top px-4 h-100 sidebar-container">
+<div class="p-4 bg-zktheme-dark-blue col-sm-2 collapse" id="sidebar">
     <div>
-        <div class="border-light border-bottom pb-2">
+        <div class="border-light">
             <span class="text-light fw-bold">Menu</span>
         </div>
+
+        <hr class="text-light">
 
         <div class="d-flex flex-column mt-2">
             {{-- <span class="my-2"><a href={{ (auth()->guest())? "/login" : "/cart" }} class="text-decoration-none {{ Request::is("cart*")? "text-zktheme-selected fw-bold" : "text-light" }}"><i class="bi bi-cart3"></i> Cart</a></span> --}}
@@ -14,9 +16,11 @@
 
     @can("seller")
         <div class="mt-4">
-            <div class="border-light border-bottom pb-2">
+            <div class="border-light">
                 <span class="text-light fw-bold">My Shop</span>
             </div>
+
+            <hr class="text-light">
 
             <div class="d-flex flex-column mt-2">
                 <span class="my-2"><a href={{ route("manageproduct.index") }} class="text-decoration-none {{ (Request::is("manage-products") || Request::is("manage-products/*/edit")) ? "text-zktheme-selected fw-bold" : "text-light" }}">
@@ -31,5 +35,6 @@
             </div>
         </div>
     @endcan
+
 
 </div>

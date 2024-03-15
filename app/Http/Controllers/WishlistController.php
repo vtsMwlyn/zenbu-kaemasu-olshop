@@ -33,8 +33,8 @@ class WishlistController extends Controller
     }
 
     public function destroy($prodslug){
-        $product = Product::where("slug", $prodslug)->get()[0];
-        $wishlist = Wishlist::where("product_id", $product->id)->get()[0];
+        $product = Product::where("slug", $prodslug)->first();
+        $wishlist = Wishlist::where("product_id", $product->id)->where("buyer_id", auth()->user()->id)->first();
 
         Wishlist::destroy("id", $wishlist->id);
 

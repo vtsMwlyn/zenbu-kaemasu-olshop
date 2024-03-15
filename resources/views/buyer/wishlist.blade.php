@@ -31,7 +31,7 @@
     <h3 class="text-zktheme-title text-center mb-4">My Wishlist</h3>
 
     @if(auth()->user()->wishlist->count())
-        <div class="mt-3 row px-4">
+        <div class="mt-3 row">
             @foreach(auth()->user()->wishlist as $product)
                 <div class="col-md-3 mb-5">
                     <div class="card">
