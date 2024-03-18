@@ -3,6 +3,12 @@
 @section("content")
     <h3 class="text-zktheme-title text-center mb-4">All Product Categories</h3>
 
+    <div class="d-flex flex-wrap my-5 gap-3 justify-content-center">
+        @foreach($categories as $category)
+            <a href={{ route("productbycategory", $category->slug) }} class="btn btn-success col-2">{{ $category->category_name }}</a>
+        @endforeach
+    </div>
+
     @foreach($categories as $category)
         @if($category->products->count())
             <div class="hstack">

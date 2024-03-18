@@ -3,7 +3,7 @@
 @section("content")
     <div class="container d-flex flex-column align-items-center bg-light rounded py-3 mt-3 mb-5">
         <h4 class="text-zktheme-title text-center mt-1 mb-3">Edit Product</h4>
-        <form action={{ route("manageproduct.update", $product->slug) }} method="post" enctype="multipart/form-data">
+        <form action={{ route("manageproduct.update", $product->slug) }} method="post" enctype="multipart/form-data" class="col-sm-11">
             @csrf
             @method("put")
             <div class="">
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="mb-3">
+            <div class="row mb-3">
                 <div class="col">
                     <label for="price" class="form-label text-zktheme-label">Product price</label>
                     <input type="price" name="price" class="form-control @error("price") is-invalid @enderror" id="price" placeholder="Price of your product" value="{{ old("price", $product->price) }}">

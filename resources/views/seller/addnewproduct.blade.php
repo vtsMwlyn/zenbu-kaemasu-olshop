@@ -4,7 +4,7 @@
     <div class="container d-flex flex-column align-items-center bg-light rounded py-3 mt-3 mb-5">
         <h4 class="text-zktheme-title text-center mt-1 mb-3">Add New Product</h4>
 
-        <form action={{ route("manageproduct.store") }} method="post" enctype="multipart/form-data">
+        <form action={{ route("manageproduct.store") }} method="post" enctype="multipart/form-data" class="col-sm-11">
             @csrf
             <div class="row">
                 <div class="mb-3">

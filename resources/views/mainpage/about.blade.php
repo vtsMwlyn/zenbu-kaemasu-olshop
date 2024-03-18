@@ -1,7 +1,7 @@
 @extends("layouts.main")
 
 @section("content")
-    <div class="bg-light rounded border px-5 py-3 mb-4">
+    <div class="container bg-light rounded border py-3 mb-4">
         {{-- Logo --}}
         <div class="d-flex justify-content-center my-3">
             <img src={{ asset("res/image/ZenbuKaemasuLogo.png") }} alt="Logo Zenbu Kaemasu Olshop" width="150px">
