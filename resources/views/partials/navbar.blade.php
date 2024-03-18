@@ -16,20 +16,33 @@
             <div class="collapse navbar-collapse gap-4" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is("products*")? "text-zktheme-selected fw-bold" : "text-light" }}" aria-current="page" href={{ route("products") }}>Products</a>
+                        <a class="nav-link {{ (Request::is("products*") && !request("category"))? "text-zktheme-selected fw-bold" : "text-light" }}" aria-current="page" href={{ route("products") }}>Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is("categories*")? "text-zktheme-selected fw-bold" : "text-light" }}" href={{ route("categories") }}>Categories</a>
+                        <a class="nav-link {{ (Request::is("categories*") || (Request::is("products") && request("category")))? "text-zktheme-selected fw-bold" : "text-light" }}" href={{ route("categories") }}>Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is("about*")? "text-zktheme-selected fw-bold" : "text-light" }}" href={{ route("about") }}>About</a>
                     </li>
                 </ul>
 
-                <form class="d-flex col" action={{ route("products") }}>
+                @if(Request::is("categories"))
+                    <form class="d-flex col" action={{ route("categories") }}>
+                @elseif(Request::is("products*"))
+                    <form class="d-flex col" action={{ route("products") }}>
+                @elseif(Request::is("categories/*"))
+                    <form class="d-flex col" action={{ route("products") }}>
+                @endif
                     <div class="input-group">
                         <button type="submit" class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></button>
-                        <input type="text" class="form-control" placeholder="Search products..." name="search" id="search">
+                        @if(Request::is("categories/*"))
+                            <input type="hidden" name="category" id="category" value="{{ $currCategory->slug }}">
+                            <input type="text" class="form-control" placeholder="Search products in {{ $currCategory->category_name }}..." name="search" id="search" value="{{ request("search") }}">
+                        @elseif(Request::is("categories"))
+                            <input type="text" class="form-control" placeholder="Search categories..." name="search" id="search" value="{{ request("search") }}">
+                        @else
+                            <input type="text" class="form-control" placeholder="Search products..." name="search" id="search" value="{{ request("search") }}">
+                        @endif
                     </div>
                 </form>
 

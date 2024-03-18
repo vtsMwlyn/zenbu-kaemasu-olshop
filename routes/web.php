@@ -26,20 +26,21 @@ Route::get("/about", function(){
 
 Route::get("/products", function(){
     return view("mainpage.allproducts", [
+        "categories" => Category::all(),
         "products" => Product::filter(request(["search", "category"]))->get()
     ]);
 })->name("products");
 
 Route::get("/categories", function(){
     return view("mainpage.allcategories", [
-        "categories" => Category::all(),
+        "categories" => Category::filter(request(["search"]))->get(),
         "products" => Product::all()
     ]);
 })->name("categories");
 
 Route::get("/categories/{category:slug}", function(Category $category){
     return view("mainpage.productsbycategory", [
-        "category" => $category,
+        "currCategory" => $category,
         "title" => $category->category_name . " Products"
     ]);
 })->name("productbycategory");
