@@ -41,9 +41,9 @@
 
             <div class="mb-3">
                 <div>
-                    <label for="category" class="form-label">Product category</label>
-                    <div class="@error("category") border rounded border-danger @enderror">
-                        <select class="form-select" id="category" name="category">
+                    <label for="checkbox" class="form-label">Product category</label>
+                    <div class="@error("checkbox") border rounded border-danger @enderror">
+                        {{-- <select class="form-select" id="category" name="category">
                             <option disabled selected>Select your product category</option>
                             @foreach($categories as $c)
                                 @if(old("category", $product->categories[0]->id) == $c->id)
@@ -52,9 +52,23 @@
                                     <option value="{{ $c->id }}">{{ $c->category_name }}</option>
                                 @endif
                             @endforeach
-                        </select>
+                        </select> --}}
+                        <div class="d-flex flex-wrap gap-3">
+                            @foreach($categories as $c)
+                                <div class="col d-flex gap-2">
+                                    @if($flags[$loop->iteration - 1])
+                                        <input class="form-check-input" type="checkbox" value={{ $c->id }} id="checkbox{{ $loop->iteration }}" name="checkbox[]" checked>
+                                    @else
+                                        <input class="form-check-input" type="checkbox" value={{ $c->id }} id="checkbox{{ $loop->iteration }}" name="checkbox[]">
+                                    @endif
+                                    <label class="form-check-label" for="checkbox{{ $loop->iteration }}">
+                                        {{ $c->category_name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                    @error("category")
+                    @error("checkbox")
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
+use Database\Factories\ProductFactory;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller{
@@ -32,7 +33,7 @@ class ProductController extends Controller{
             "image" => "required|file|image|max:4096",
             "description" => "required",
             "slug" => "required",
-            "category" => "required"
+            "checkbox" => "required"
         ]);
 
         if($request->file("image")){
@@ -58,12 +59,14 @@ class ProductController extends Controller{
 
         $createdProductData = Product::create($newProductData);
 
-        $newProductCategoryData = [
-            "product_id" => $createdProductData->id,
-            "category_id" => $validatedData["category"]
-        ];
+        for($i = 0; $i < sizeof($validatedData["checkbox"]); $i++){
+            $newProductCategoryData = [
+                "product_id" => $createdProductData->id,
+                "category_id" => $validatedData["checkbox"][$i]
+            ];
 
-        ProductCategory::create($newProductCategoryData);
+            ProductCategory::create($newProductCategoryData);
+        }
 
         return redirect(route("manageproduct.index"))->with("successAddProduct", "Successfully added a new product!");
     }
@@ -73,9 +76,26 @@ class ProductController extends Controller{
     }
 
     public function edit($slug){
+        $categories = Category::all();
+        $product = Product::where("slug", $slug)->first();
+        $furaggu = [];
+
+        foreach($categories as $allctg){
+            array_push($furaggu, 0);
+        }
+
+        for($i = 0; $i < sizeof($categories); $i++){
+            for($j = 0; $j < sizeof($product->categories); $j++){
+                if($categories[$i]->id == $product->categories[$j]->id){
+                    $furaggu[$i] = 1;
+                }
+            }
+        }
+
         return view("seller.editproduct", [
-            "product" => Product::where("slug", $slug)->get()[0],
-            "categories" => Category::all()
+            "product" => $product,
+            "categories" => $categories,
+            "flags" => $furaggu
         ]);
     }
 
@@ -89,7 +109,7 @@ class ProductController extends Controller{
             "image" => "file|image|max:4096",
             "description" => "required",
             "slug" => "required",
-            "category" => "required"
+            "checkbox" => "required"
         ]);
 
         if($request->file("image")){
@@ -120,12 +140,19 @@ class ProductController extends Controller{
 
         Product::where("id", $product->id)->update($newProductData);
 
-        $pctg = ProductCategory::where("product_id", $product->id)->get()[0];
-        $newProductCategoryData = [
-            "product_id" => $product->id,
-            "category_id" => Category::where("id", $validatedUpdateData["category"])->get()[0]->id
-        ];
-        ProductCategory::where("id", $pctg->id)->update($newProductCategoryData);
+        $pctg = ProductCategory::where("product_id", $product->id)->get();
+        foreach($pctg as $pc){
+            ProductCategory::destroy($pc->id);
+        }
+
+        for($i = 0; $i < sizeof($validatedUpdateData["checkbox"]); $i++){
+            $newProductCategoryData = [
+                "product_id" => $product->id,
+                "category_id" => $validatedUpdateData["checkbox"][$i]
+            ];
+
+            ProductCategory::create($newProductCategoryData);
+        }
 
         return redirect(route("manageproduct.index"))->with("successUpdateProduct", "Product successfully updated!");
     }

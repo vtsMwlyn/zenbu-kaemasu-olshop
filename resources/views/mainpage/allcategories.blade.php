@@ -3,18 +3,18 @@
 @section("content")
     <h3 class="text-zktheme-title text-center mb-4">All Product Categories</h3>
 
-    <div class="d-flex flex-wrap my-5 gap-3 justify-content-center">
+    <div class="d-flex flex-wrap my-5 gap-3 justify-content-center align-items-center">
         @foreach($categories as $category)
-            <a href={{ route("productbycategory", $category->slug) }} class="btn btn-success col-2">{{ $category->category_name }}</a>
+            <a href={{ route("productbycategory", $category->slug) }} class="btn btn-success" style="width: 160px">{{ $category->category_name }}</a>
         @endforeach
     </div>
 
     @foreach($categories as $category)
+        <div class="hstack">
+            <h5 class="text-zktheme-subtitle">{{ $category->category_name }}</h5>
+            <a href={{ route("productbycategory", $category->slug) }} class="text-zktheme-subtitle text-decoration-none ms-auto">See all</a>
+        </div>
         @if($category->products->count())
-            <div class="hstack">
-                <h5 class="text-zktheme-subtitle">{{ $category->category_name }}</h5>
-                <a href={{ route("productbycategory", $category->slug) }} class="text-zktheme-subtitle text-decoration-none ms-auto">See all</a>
-            </div>
             <div class="mt-3 d-flex flex-wrap justify-content-center gap-3">
                 @foreach($category->products as $product)
                     @if($loop->iteration == 5)
