@@ -4,7 +4,7 @@
             <!--Brand and sidebar toogler-->
             <div class="navbar-brand">
                 <button class="border-0 bg-transparent dropdown-toggle text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle sidebar">
-                    <img src={{ asset("res/image/logowithtext.png") }} alt="Logo" width="150px">
+                    <img src={{ asset("res/image/logowithtext.png") }} alt="Logo" width="140px">
                 </button>
             </div>
 

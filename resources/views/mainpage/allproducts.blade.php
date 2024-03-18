@@ -34,9 +34,9 @@
     </div>
 
     @if($products->count())
-        <div class="my-5 row">
+        <div class="my-5 d-flex flex-wrap justify-content-center gap-3">
             @foreach($products as $product)
-                <div class="col-md-3 mb-5">
+                <div class="mb-5" style="width: 300px">
                     <div class="card">
                         <form action={{ route("wishlist.store") }} method="post">
                             @csrf

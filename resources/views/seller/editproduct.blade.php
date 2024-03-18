@@ -1,12 +1,12 @@
 @extends("layouts.main")
 
 @section("content")
-    <div class="bg-light rounded py-3 px-5 mx-5 mt-3 mb-5">
+    <div class="container d-flex flex-column align-items-center bg-light rounded py-3 mt-3 mb-5">
         <h4 class="text-zktheme-title text-center mt-1 mb-3">Edit Product</h4>
         <form action={{ route("manageproduct.update", $product->slug) }} method="post" enctype="multipart/form-data">
             @csrf
             @method("put")
-            <div class="row">
+            <div class="">
                 <div class="mb-3">
                     <label for="productname" class="form-label text-zktheme-label">Product name</label>
                     <input type="productname" name="productname" class="form-control @error("productname") is-invalid @enderror" id="productname" placeholder="Your product name" value="{{ old("productname", $product->product_name) }}">
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="mb-3">
                 <div class="col">
                     <label for="price" class="form-label text-zktheme-label">Product price</label>
                     <input type="price" name="price" class="form-control @error("price") is-invalid @enderror" id="price" placeholder="Price of your product" value="{{ old("price", $product->price) }}">
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="mb-3">
                 <div>
                     <label for="category" class="form-label">Product category</label>
                     <div class="@error("category") border rounded border-danger @enderror">
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="mb-3">
                 <div>
                     <label for="image" class="form-label">Product Image</label>
                     <div class="@error("category") border rounded border-danger @enderror">
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="mb-3">
                 <div>
                     <label for="description" class="form-label">Product description</label>
                     <div>

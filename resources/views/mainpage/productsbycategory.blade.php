@@ -4,9 +4,9 @@
     <h3 class="text-zktheme-title text-center mb-4">{{ $title }}</h3>
 
     @if($category->products->count())
-        <div class="mt-3 row px-4">
+        <div class="mt-3 d-flex flex-wrap justify-content-center gap-3">
             @foreach($category->products as $product)
-                <div class="col-md-3 mb-5">
+                <div class="mb-5" style="width: 300px">
                     <div class="card">
                         <form action={{ route("wishlist.store") }} method="post">
                             @csrf

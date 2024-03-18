@@ -4,19 +4,18 @@
     <h3 class="text-zktheme-title text-center mb-4">All Product Categories</h3>
 
     @foreach($categories as $category)
-        <div class="hstack">
-            <h5 class="text-zktheme-subtitle">{{ $category->category_name }}</h5>
-            <a href={{ route("productbycategory", $category->slug) }} class="text-zktheme-subtitle text-decoration-none ms-auto">See all</a>
-        </div>
-
         @if($category->products->count())
-            <div class="mt-3 row">
+            <div class="hstack">
+                <h5 class="text-zktheme-subtitle">{{ $category->category_name }}</h5>
+                <a href={{ route("productbycategory", $category->slug) }} class="text-zktheme-subtitle text-decoration-none ms-auto">See all</a>
+            </div>
+            <div class="mt-3 d-flex flex-wrap justify-content-center gap-3">
                 @foreach($category->products as $product)
                     @if($loop->iteration == 5)
                         @break
                     @endif
 
-                    <div class="col-md-3 mb-5">
+                    <div class="mb-5" style="width: 300px">
                         <div class="card">
                             <form action={{ route("wishlist.store") }} method="post">
                                 @csrf

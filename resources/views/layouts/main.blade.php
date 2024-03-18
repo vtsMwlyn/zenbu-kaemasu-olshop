@@ -21,12 +21,12 @@
 
     </head>
 
-    <body class="bg-zktheme-light-blue">
+    <body class="bg-zktheme-light-blue" style="max-width: 100vw;">
         @include("partials.navbar")
 
-        <div class="d-flex" style="padding-top: 110px">
+        <div class="d-flex justify-content-center" style="padding-top: 110px">
             <div class="col-sm-2 bg-zktheme-dark-blue collapse" id="sidebar"></div>
-            <div class="col px-5">
+            <div class="col px-4">
                 @yield("content")
             </div>
         </div>
