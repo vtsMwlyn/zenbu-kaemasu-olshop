@@ -65,9 +65,9 @@
                     <label for="profpic_path" class="form-label">Profile Picture</label>
                     <div class="@error("profpic_path") border rounded border-danger @enderror">
                         @if($userDetail->profpic_path)
-                            <img src={{ asset("storage/" . $userDetail->profpic_path) }} class="img-preview img-fluid d-block col-sm-5 mb-3">
+                            <img src={{ asset("storage/" . $userDetail->profpic_path) }} class="img-preview img-fluid d-block col-sm-3 mb-3">
                         @else
-                            <img class="img-preview img-fluid d-block col-sm-5">
+                            <img class="img-preview img-fluid d-block col-sm-3">
                         @endif
                         <input class="form-control" type="file" id="profpic_path" name="profpic_path" onChange="previewImage()">
                     </div>
