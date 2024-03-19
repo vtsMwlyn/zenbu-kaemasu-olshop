@@ -25,7 +25,7 @@
         <div id="nafubaa">
             @include("partials.navbar")
 
-            <div class="d-flex justify-content-center" style="padding-top: 110px">
+            <div class="d-flex justify-content-center" style="padding-top: 120px">
                 <div class="col-sm-2 bg-zktheme-dark-blue collapse" id="fakesidebar" data-bs-parent="#nafubaa"></div>
                 <div class="col px-4">
                     @yield("content")
