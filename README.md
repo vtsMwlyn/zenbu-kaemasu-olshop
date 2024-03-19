@@ -75,7 +75,7 @@ public function index(){
 
 ## Database
 
-This web application uses database to store and retrieve its data. Here below are the tables used in this web application:
+This web application uses database to store and retrieve its data. This database is developed using MySQL and Laravel Eloquent Model. Here below are the tables used in this web application:
 - roles table, to store roles available in this web application which are buyer and seller.
 - users table, to store user credential that will be used to log in.
 - categories table, to to store product categories available in this web application which currently are fashion, electronics, tools, healthcares, food & beverages, gadget, and kitchen.
@@ -91,6 +91,25 @@ $allUserData = User::all();
 $allUserDetailData = UserDetail::all();
 $userDataWithCertainName = UserDetail::where("user_name", "A Name")->get();
 ```
+
+Some tables are related to other table such as users and user_details table where user_details table stores foreign key from users table. This can be used to access other table's data if given a table with relation to the table. This relationship is implemented using methods in the object relational model class like this:
+```php
+class UserDetail extends Model {
+    use HasFactory;
+
+    protected $guarded = ["id"];
+
+    public function appUser(){
+        return $this->belongsTo(User::class);
+    }
+}
+```
+
+You can find a sql file from this repository. Use it to import the database in your device. Or you can use database seeder in the project to generate data by enter this in command prompt:
+```bash
+php artisan migrate --seed
+```
+
 
 ## Contributing
 
