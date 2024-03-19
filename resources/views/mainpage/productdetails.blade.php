@@ -54,23 +54,6 @@
             @if($p->product_name == $product->product_name || $p->categories[0]->id != $product->categories[0]->id)
                 @continue
             @else
-                {{-- <div class="card mb-3 d-flex flex-row flex-wrap">
-                    <div class="col-md-2">
-                        @if($p->prodimg_path)
-                            <img src={{ asset("storage/" . $p->prodimg_path) }} class="img-fluid rounded-start border" alt="Default product image">
-                        @else
-                            <img src={{ asset("res/image/defaultproductimage.jpg") }} class="img-fluid rounded-start border" alt="Default product image">
-                        @endif
-                    </div>
-
-                    <div class="col-md-10 px-3 d-flex align-items-center">
-                        <div class="d-flex flex-column">
-                            <h5 class="fw-semibold"><a href={{ route("productdetails", $p->slug) }} class="text-decoration-none text-dark">{{ $p->product_name }}</a></h5>
-                            <span class="fw-bold fs-6"><i class="bi bi-cash-stack text-success"></i> Rp {{ number_format($p->price) }}.00</span>
-                        </div>
-                    </div>
-                </div> --}}
-
                 <div class="mb-5" style="width: 300px">
                     <div class="card">
                         <form action={{ route("wishlist.store") }} method="post">
