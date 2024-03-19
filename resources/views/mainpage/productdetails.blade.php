@@ -4,7 +4,7 @@
     <div class="row d-flex justify-content-between flex-wrap-reverse mb-4 row-gap-3">
         <div class="col-sm-7 d-flex flex-column">
             <h5 class="text-zktheme-subtitle mb-3">Product Details</h5>
-            <div class="bg-white rounded p-3 flex-grow-1 mt-2" style="max-height: 500px; overflow: auto;">
+            <div class="bg-white rounded p-3 flex-grow-1 mt-2" style="max-height: 520px; overflow: auto;">
                 {!! $product->desc !!}
             </div>
         </div>
@@ -26,6 +26,7 @@
                 <div class="my-3 px-3">
                     <h5 class="card-title">{{ $product->product_name }}</h5>
                     <p class="fst-italic text-secondary fs-6 mt-2">by {{ $product->seller->userDetail->username }}</p>
+                    <p class="card-text fw-semibold"><i class="bi bi-star-fill text-warning"></i> Not yet rated</p>
                     <p class="fw-bold fs-5"><i class="bi bi-cash-stack text-success"></i> Rp {{ number_format($product->price) }}.00</p>
                     <p class="fs-6">Stocks available: {{ $product->stock }}</p>
 
