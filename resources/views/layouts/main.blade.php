@@ -22,18 +22,19 @@
     </head>
 
     <body class="bg-zktheme-light-blue" style="max-width: 100vw;">
-        @include("partials.navbar")
+        <div id="nafubaa">
+            @include("partials.navbar")
 
-        <div class="d-flex justify-content-center" style="padding-top: 110px">
-            <div class="col-sm-2 bg-zktheme-dark-blue collapse" id="sidebar"></div>
-            <div class="col px-4">
-                @yield("content")
+            <div class="d-flex justify-content-center" style="padding-top: 110px">
+                <div class="col-sm-2 bg-zktheme-dark-blue collapse" id="fakesidebar" data-bs-parent="#nafubaa"></div>
+                <div class="col px-4">
+                    @yield("content")
+                </div>
             </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
-
     </body>
 
 </html>

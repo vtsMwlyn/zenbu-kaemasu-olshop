@@ -1,4 +1,4 @@
-<div class="p-4 bg-zktheme-dark-blue col-sm-2 collapse" id="sidebar">
+<div class="p-4 bg-zktheme-dark-blue col-sm-2 collapse" id="sidebar" data-bs-parent="#nafubaa">
     <div>
         <div class="border-light">
             <span class="text-light fw-bold">Menu</span>

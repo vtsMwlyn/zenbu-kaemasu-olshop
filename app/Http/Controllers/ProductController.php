@@ -20,12 +20,16 @@ class ProductController extends Controller{
     }
 
     public function create(){
+        $this->authorize("seller");
+
         return view("seller.addnewproduct", [
             "categories" => Category::all()
         ]);
     }
 
     public function store(Request $request){
+        $this->authorize("seller");
+
         $validatedData = $request->validate([
             "productname" => "required",
             "price" => "required|numeric|gt:0",
@@ -76,8 +80,14 @@ class ProductController extends Controller{
     }
 
     public function edit($slug){
-        $categories = Category::all();
+        $this->authorize("seller");
+
         $product = Product::where("slug", $slug)->first();
+        if($product->seller_id != auth()->user()->id){
+            abort(403);
+        }
+
+        $categories = Category::all();
         $furaggu = [];
 
         foreach($categories as $allctg){
@@ -100,7 +110,12 @@ class ProductController extends Controller{
     }
 
     public function update(Request $request, $slug){
+        $this->authorize("seller");
+
         $product = Product::where("slug", $slug)->get()[0];
+        if($product->seller_id != auth()->user()->id){
+            abort(403);
+        }
 
         $validatedUpdateData = $request->validate([
             "productname" => "required",
@@ -158,7 +173,12 @@ class ProductController extends Controller{
     }
 
     public function destroy($slug){
+        $this->authorize("seller");
+
         $product = Product::where("slug", $slug)->get()[0];
+        if($product->seller_id != auth()->user()->id){
+            abort(403);
+        }
 
         if($product->prodimg_path){
             Storage::delete($product->prodimg_path);

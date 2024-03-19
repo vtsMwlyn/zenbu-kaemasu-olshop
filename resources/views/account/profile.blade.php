@@ -1,7 +1,7 @@
 @extends("layouts.main")
 
 @section("content")
-    <div class="bg-light rounded py-3 px-5 mx-5 mt-3 mb-5">
+    <div class="container d-flex flex-column align-items-center bg-light rounded py-3 mt-3 mb-5">
         <h4 class="text-zktheme-title text-center mt-1 mb-3">My Profile</h4>
         @if(session()->has("successUpdateProfile"))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -9,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <form action={{ route("profile.update") }} method="post" enctype="multipart/form-data">
+        <form action={{ route("profile.update") }} method="post" enctype="multipart/form-data" class="col-sm-11">
             @csrf
             <div class="row mb-3">
                 <div class="col">

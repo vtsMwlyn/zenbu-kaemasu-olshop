@@ -64,5 +64,5 @@ Route::get("/productdetails/{product:slug}", function(Product $product){
 
 Route::resource("/manage-products", ProductController::class, ["names" => ["index" => "manageproduct.index", "store" => "manageproduct.store", "create" => "manageproduct.create", "edit" => "manageproduct.edit", "update" => "manageproduct.update", "destroy" => "manageproduct.destroy"]]);
 
-Route::get("/profile", [ProfileController::class, "index"])->name("profile");
+Route::get("/profile", [ProfileController::class, "index"])->name("profile")->middleware("auth");
 Route::post("/profile", [ProfileController::class, "update"])->name("profile.update");
