@@ -43,16 +43,6 @@
                 <label for="checkbox" class="form-label">Product category</label>
                 <div>
                     <div class="@error("checkbox") border rounded border-danger p-3 @enderror">
-                        {{-- <select class="form-select" id="category" name="category">
-                            <option disabled selected>Select your product category</option>
-                            @foreach($categories as $c)
-                                @if(old("category") == $c->id)
-                                    <option value="{{ $c->id }}" selected>{{ $c->category_name }}</option>
-                                @else
-                                    <option value="{{ $c->id }}">{{ $c->category_name }}</option>
-                                @endif
-                            @endforeach
-                        </select> --}}
                         <div class="d-flex flex-wrap gap-3">
                             @foreach($categories as $c)
                                 <div class="col d-flex gap-2">
