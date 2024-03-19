@@ -55,14 +55,14 @@ Manage products pages is working with product management when sellers want to ad
 - Edit product page, where sellers can modify the data of an existing product. (".../manage-products/.../edit")
 
 The routes to each page and also the authorization can be found in file web.php, here are two as examples:
-```bash
+```php
 Route::get("/login", [LoginController::class, "index"])->name("login")->middleware("guest");
 Route::get("/profile", [ProfileController::class, "index"])->name("profile")->middleware("auth");
 ```
 This means that the route to link ".../login" (named "login") is controlled by LoginController.php file and can only be accessed by guests. Then the route to link ".../profile" (named "profile") is controlled by ProfileController.php file and can only be accessed by those who are already logged in (which are buyers and sellers).
 
 The authorization for seller is a bit different because it uses a Gate that can be found in AppServiceProvider.php file and the authorization is defined like in ProductController.php file:
-```bash
+```php
 public function index(){
     $this->authorize("seller");
 
@@ -86,8 +86,7 @@ This web application uses database to store and retrieve its data. Here below ar
 - wishlists table, to connect users and products where the products are added to the users wishlist. This is also an implementation of many-to-many relationship between them.
 
 Rows of a certain table can be retrieved by calling their object relational model class and their methods. As examples, you can retrieve all or some data from users and user_details table with:
-```
-bash
+```php
 $allUserData = User::all();
 $allUserDetailData = UserDetail::all();
 $userDataWithCertainName = UserDetail::where("user_name", "A Name")->get();
