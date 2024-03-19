@@ -54,6 +54,44 @@ Manage products pages is working with product management when sellers want to ad
 - Add new product page, where sellers can specify the data of a new product to be created and added. (".../manage-products/add")
 - Edit product page, where sellers can modify the data of an existing product. (".../manage-products/.../edit")
 
+The routes to each page and also the authorization can be found in file web.php, here are two as examples:
+```bash
+Route::get("/login", [LoginController::class, "index"])->name("login")->middleware("guest");
+Route::get("/profile", [ProfileController::class, "index"])->name("profile")->middleware("auth");
+```
+This means that the route to link ".../login" (named "login") is controlled by LoginController.php file and can only be accessed by guests. Then the route to link ".../profile" (named "profile") is controlled by ProfileController.php file and can only be accessed by those who are already logged in (which are buyers and sellers).
+
+The authorization for seller is a bit different because it uses a Gate that can be found in AppServiceProvider.php file and the authorization is defined like in ProductController.php file:
+```bash
+public function index(){
+    $this->authorize("seller");
+
+    return view("seller.myproducts", [
+        "products" => Product::where("seller_id", auth()->user()->id)->get()
+    ]);
+}
+```
+
+
+## Database
+
+This web application uses database to store and retrieve its data. Here below are the tables used in this web application:
+- roles table, to store roles available in this web application which are buyer and seller.
+- users table, to store user credential that will be used to log in.
+- categories table, to to store product categories available in this web application which currently are fashion, electronics, tools, healthcares, food & beverages, gadget, and kitchen.
+- products table, to store a product's detail data.
+- user_details table, to store other user's detail data.
+- product_categories table, to connect products and categories as implementation of many-to-many relationship.
+- carts table, to connect users and products where the products are added to the users cart. This is also an implementation of many-to-many relationship between them.
+- wishlists table, to connect users and products where the products are added to the users wishlist. This is also an implementation of many-to-many relationship between them.
+
+Rows of a certain table can be retrieved by calling their object relational model class and their methods. As examples, you can retrieve all or some data from users and user_details table with:
+```
+bash
+$allUserData = User::all();
+$allUserDetailData = UserDetail::all();
+$userDataWithCertainName = UserDetail::where("user_name", "A Name")->get();
+```
 
 ## Contributing
 
