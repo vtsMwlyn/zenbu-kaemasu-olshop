@@ -122,9 +122,4 @@ Adding, updating, or removing data in the database is controlled with Controller
 
 ## Contributing
 
-This project frontend is using HTML, CSS, and JavaScript, especially Bootstrap CSS framework, kindly visit [Bootstrap website](https://getbootstrap.com) This project backend is using Laravel PHP framework, kindly visit [Laravel website](https://laravel.com/).
-
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project frontend is using HTML, CSS, and JavaScript, especially Bootstrap CSS framework, kindly visit [Bootstrap website](https://getbootstrap.com). This project backend is using Laravel PHP framework, kindly visit [Laravel website](https://laravel.com/).
