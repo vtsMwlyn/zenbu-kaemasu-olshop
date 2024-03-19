@@ -81,7 +81,7 @@ This web application uses database to store and retrieve its data. This database
 - categories table, to to store product categories available in this web application which currently are fashion, electronics, tools, healthcares, food & beverages, gadget, and kitchen.
 - products table, to store a product's detail data.
 - user_details table, to store other user's detail data.
-- product_categories table, to connect products and categories as implementation of many-to-many relationship.
+- product_category table, to connect products and categories as implementation of many-to-many relationship.
 - carts table, to connect users and products where the products are added to the users cart. This is also an implementation of many-to-many relationship between them.
 - wishlists table, to connect users and products where the products are added to the users wishlist. This is also an implementation of many-to-many relationship between them.
 
@@ -110,10 +110,19 @@ You can find a sql file from this repository. Use it to import the database in y
 php artisan migrate --seed
 ```
 
+Adding, updating, or removing data in the database is controlled with Controllers in this web application. It also can validate input forms like in login page, register page, profile page, manage products page, add new product page, and edit product page.
+- Login page will read data from users table.
+- Register page will store new data to users and user_details table.
+- Profile page will read and update user_details table.
+- Manage products page will read data from products table also delete data in products, product_category, cart, and wishlist table.
+- Add new product page will store new data to products and product_category table.
+- Edit new product page will read and update data from/in products and product_category table.
+
+
 
 ## Contributing
 
-This project is using Laravel PHP framework, kindly visit [Laravel website](https://laravel.com/).
+This project frontend is using HTML, CSS, and JavaScript, especially Bootstrap CSS framework, kindly visit [Bootstrap website](https://getbootstrap.com) This project backend is using Laravel PHP framework, kindly visit [Laravel website](https://laravel.com/).
 
 
 ## License
