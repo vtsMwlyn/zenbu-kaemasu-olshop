@@ -69,9 +69,9 @@
                     <label for="image" class="form-label">Product Image</label>
                     <div class="@error("category") border rounded border-danger @enderror">
                         @if($product->prodimg_path)
-                            <img src={{ asset("storage/" . $product->prodimg_path) }} class="img-preview img-fluid d-block col-sm-5 mb-3">
+                            <img src={{ asset("storage/" . $product->prodimg_path) }} class="img-preview img-fluid d-block col-sm-3 mb-3">
                         @else
-                            <img class="img-preview img-fluid d-block col-sm-5">
+                            <img class="img-preview img-fluid d-block col-sm-3">
                         @endif
                         <input class="form-control" type="file" id="image" name="image" onChange="previewImage()">
                     </div>
