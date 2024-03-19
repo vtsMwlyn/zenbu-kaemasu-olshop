@@ -19,6 +19,18 @@ php artisan serve
 
 Then you can enter "128.0.0.1:8000/" or IP address shown on the command prompt on your browser. Or if you are using XAMPP and put the project in htdocs, you can enter "localhost/zenbu-kaemasu-olshop/public/".
 
+## Available User Roles and Privilleges
+
+This web application is currently having only three roles which are listed below:
+- Guests (those who are not logged in)
+- Buyers (those who are logged in with normal account)
+- Sellers (those who are logged in with seller account).
+
+These roles are defined with middlewares and the authentication and authorization system. Each role has some specific characteristics as shown below:
+- Guests are authorized to only view and search products and categories. They're required to create and log in to their account if they want to use more features. In this web application their middleware is known as "guest".
+- Buyers are authorized to view and search products and categories also adding products to their cart or wishlist. They can't modify products in the web application. In this web application their middleware is known as "auth".
+- Sellers are similar to buyers but they are authorized to modify their products including add, update, and remove products. In this web application their middleware is known as "seller".
+
 ## Contributing
 
 This project is using Laravel PHP framework, kindly visit [Laravel website](https://laravel.com/).
